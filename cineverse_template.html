@@ -1,0 +1,446 @@
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cineverse</title>
+
+    <!-- إضافة Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- إضافة أيقونات Google Material -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #121212;
+            color: white;
+        }
+
+        /* Header */
+        header {
+            background-color: #121212;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* الشعار */
+        header .logo h1 {
+            color: #4CAF50; /* اللون الأخضر */
+            font-size: 1.8rem;
+            font-weight: 500;
+        }
+
+        /* شريط التنقل */
+        header .nav-links {
+            display: flex;
+            gap: 15px; /* تقليل المسافة بين الأزرار */
+        }
+
+        header .nav-links a {
+            color: #fff;
+            font-size: 1rem; /* تصغير حجم الخط */
+            font-weight: 400; /* خط عادي */
+            text-decoration: none;
+            padding: 5px 12px; /* تصغير الحجم */
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        header .nav-links a:hover {
+            background-color: #4CAF50; /* اللون الأخضر */
+            color: #121212;
+        }
+
+        /* إضافة الأيقونات في الجهة اليمنى */
+        header .icons {
+            display: flex;
+            gap: 15px; /* تقليل المسافة بين الأيقونات */
+            align-items: center;
+        }
+
+        header .icons a {
+            color: white;
+            font-size: 1.6rem;
+            text-decoration: none;
+        }
+
+        header .icons a:hover {
+            color: #4CAF50; /* اللون الأخضر */
+        }
+
+        /* Hero Section */
+        #hero {
+            background-image: url('your-poster-image.jpg'); /* ضع رابط صورة البوستر العريض هنا */
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start; /* محاذاة العناصر إلى اليسار */
+            text-align: left;
+            color: white;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        #hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        #hero p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            max-width: 800px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .hero-buttons button {
+            background-color: #4CAF50;
+            border: none;
+            padding: 12px 25px;
+            color: white;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center; /* محاذاة الأيقونات والنص */
+        }
+
+        .hero-buttons button:hover {
+            background-color: #45a049;
+        }
+
+        /* إضافة الأيقونات للأزرار */
+        .hero-buttons button .material-icons {
+            margin-right: 10px; /* المسافة بين الأيقونة والنص */
+        }
+
+        /* تفاصيل الحلقات */
+        #episodes {
+            padding: 40px 20px;
+            background-color: #1c1c1c;
+        }
+
+        #episodes h2 {
+            font-size: 2rem;
+            color: #4CAF50; /* اللون الأخضر */
+            margin-bottom: 20px;
+        }
+
+        .episode-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .episode-card {
+            background-color: #333;
+            width: 250px;
+            border-radius: 8px;
+            overflow: hidden;
+            color: white;
+            position: relative;
+        }
+
+        .episode-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .episode-card .episode-info {
+            padding: 10px;
+        }
+
+        .episode-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .episode-card p {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .episode-card .progress-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: #444;
+        }
+
+        .episode-card .progress-bar span {
+            display: block;
+            height: 100%;
+            background-color: #4CAF50;
+            width: 34%; /* تعديل عرض الشريط بناءً على التقدم */
+        }
+
+        /* قسم الأفلام المشابهة */
+        #similar-movies {
+            padding: 40px 20px;
+            background-color: #121212;
+        }
+
+        #similar-movies h2 {
+            font-size: 2rem;
+            color: #4CAF50; /* اللون الأخضر */
+            margin-bottom: 20px;
+        }
+
+        .movie-list {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .movie-card {
+            background-color: #333;
+            width: 250px;
+            border-radius: 8px;
+            overflow: hidden;
+            color: white;
+            position: relative;
+        }
+
+        .movie-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .movie-card .movie-info {
+            padding: 10px;
+        }
+
+        .movie-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .movie-card p {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .rating {
+            font-size: 1.2rem;
+            color: #f2a900; /* اللون البرتقالي */
+        }
+
+        .rating .material-icons {
+            font-size: 1.4rem;
+            margin-right: 5px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #121212;
+            color: white;
+            padding: 40px 20px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        footer .footer-text {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        footer .footer-links {
+            margin-bottom: 20px;
+        }
+
+        footer .footer-links a {
+            color: #4CAF50;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 1rem;
+        }
+
+        footer .footer-links a:hover {
+            color: #f2a900; /* تغيير اللون عند المرور */
+        }
+
+        footer .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        footer .social-icons a {
+            color: white;
+            font-size: 2rem;
+        }
+
+        footer .social-icons a:hover {
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <h1>Cineverse</h1>
+        </div>
+        <div class="nav-links">
+            <a href="#home" class="active">Home</a>
+            <a href="#discover">Discover</a>
+            <a href="#movie-release">Movie Release</a>
+            <a href="#forum">Forum</a>
+            <a href="#about">About</a>
+        </div>
+        <div class="icons">
+            <!-- أيقونات من Google Material -->
+            <a href="#" id="search"><span class="material-icons">search</span></a>
+            <a href="#" id="notifications"><span class="material-icons">notifications</span></a>
+            <a href="#" id="profile"><span class="material-icons">account_circle</span></a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <h1>The Last Of Us Season 1</h1>
+        <p>9 Episodes · 2022 · Fantasy · Actions</p>
+        <div class="hero-buttons">
+            <button><span class="material-icons">play_arrow</span>Continue Watching</button>
+            <button><span class="material-icons">playlist_add</span>Add Watchlist</button>
+        </div>
+    </section>
+
+    <!-- تفاصيل الحلقات -->
+    <section id="episodes">
+        <h2>1-9 Episode</h2>
+        <div class="episode-list">
+            <div class="episode-card">
+                <img src="episode1.jpg" alt="Chapter 1">
+                <div class="episode-info">
+                    <h3>Chapter 1</h3>
+                    <p>The chapter about genuine just want to go out from his palace to get freedom...</p>
+                    <div class="progress-bar">
+                        <span style="width: 34%;"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="episode-card">
+                <img src="episode2.jpg" alt="Chapter 2">
+                <div class="episode-info">
+                    <h3>Chapter 2</h3>
+                    <p>The chapter about genuine just want to go out from his palace to get freedom...</p>
+                    <div class="progress-bar">
+                        <span style="width: 55%;"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="episode-card">
+                <img src="episode3.jpg" alt="Chapter 3">
+                <div class="episode-info">
+                    <h3>Chapter 3</h3>
+                    <p>The chapter about genuine just want to go out from his palace to get freedom...</p>
+                    <div class="progress-bar">
+                        <span style="width: 70%;"></span>
+                    </div>
+                </div>
+            </div>
+            <!-- أضف الحلقات الأخرى هنا بنفس الشكل -->
+        </div>
+    </section>
+
+    <!-- الأفلام المشابهة -->
+    <section id="similar-movies">
+        <h2>Similar Movies for you</h2>
+        <div class="movie-list">
+            <div class="movie-card">
+                <img src="top-gun.jpg" alt="TOP GUN: Maverick">
+                <div class="movie-info">
+                    <h3>TOP GUN: Maverick</h3>
+                    <p>Action · Movie</p>
+                    <div class="rating">
+                        <span class="material-icons">star</span> 4.6
+                    </div>
+                </div>
+            </div>
+            <div class="movie-card">
+                <img src="spiderman.jpg" alt="Spiderman: Into the Spider-Verse">
+                <div class="movie-info">
+                    <h3>Spiderman: Into the Spider-Verse</h3>
+                    <p>Action · Movie</p>
+                    <div class="rating">
+                        <span class="material-icons">star</span> 4.6
+                    </div>
+                </div>
+            </div>
+            <div class="movie-card">
+                <img src="black-panther.jpg" alt="Black Panther: Wakanda Forever">
+                <div class="movie-info">
+                    <h3>Black Panther: Wakanda Forever</h3>
+                    <p>Action · Movie</p>
+                    <div class="rating">
+                        <span class="material-icons">star</span> 4.6
+                    </div>
+                </div>
+            </div>
+            <div class="movie-card">
+                <img src="batman-v-superman.jpg" alt="Batman V Superman">
+                <div class="movie-info">
+                    <h3>Batman V Superman</h3>
+                    <p>Action · Movie</p>
+                    <div class="rating">
+                        <span class="material-icons">star</span> 4.6
+                    </div>
+                </div>
+            </div>
+            <div class="movie-card">
+                <img src="red-notice.jpg" alt="Red Notice">
+                <div class="movie-info">
+                    <h3>Red Notice</h3>
+                    <p>Action · Movie</p>
+                    <div class="rating">
+                        <span class="material-icons">star</span> 4.6
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-text">
+            Our platform is trusted by millions & features best updated movies all around the world.
+        </div>
+        <div class="footer-links">
+            <a href="#">Home</a> / <a href="#">Discover</a> / <a href="#">Influence</a> / <a href="#">Release</a>
+        </div>
+        <div class="social-icons">
+            <a href="#"><span class="material-icons">facebook</span></a>
+            <a href="#"><span class="material-icons">instagram</span></a>
+            <a href="#"><span class="material-icons">whatsapp</span></a>
+        </div>
+        <div>&copy; 2023</div>
+    </footer>
+</body>
+</html>
